@@ -1,7 +1,8 @@
 import tkinter as tk
 from tkinter import messagebox
+from vault import save_vault, load_vault
 
-passwords = []
+passwords = load_vault()
 
 def save_password():
   website = website_entry.get()
@@ -17,6 +18,8 @@ def save_password():
     "username": username,
     "password": password
   })
+
+  save_vault(passwords)
 
   update_list()
 
@@ -54,4 +57,5 @@ tk.Button(
 password_list = tk.Listbox(root, width=60)
 password_list.pack(pady=10)
 
+update_list()
 root.mainloop()
